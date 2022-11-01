@@ -26,6 +26,7 @@ app.use(
 app.use(
   cors({
     origin: process.env.FRONT_END_URL || "http://localhost:3000",
+    methods: ["POST", "PUT", "GET", "OPTIONS", "DELETE", "HEAD"],
     credentials: true,
   })
 );
