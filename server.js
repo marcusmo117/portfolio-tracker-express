@@ -25,7 +25,8 @@ app.use(
 
 app.use(
   cors({
-    origin: process.env.FRONT_END_URL || "http://localhost:3000",
+    origin: true,
+    // process.env.FRONT_END_URL || "http://localhost:3000"
     methods: ["POST", "PUT", "GET", "OPTIONS", "DELETE", "HEAD"],
     credentials: true,
   })
@@ -65,9 +66,9 @@ wss.on("connection", function connection(ws) {
 
   //listening for messages, logging and sending data from BE to FE
   socket.addEventListener("message", function (event) {
-    // setTimeout(function () {
-    //   console.log("Message from server ", event.data);
-    // }, 2000);
+    setTimeout(function () {
+      console.log("Message from server ", event.data);
+    }, 2000);
     ws.send(event.data);
   });
 });
