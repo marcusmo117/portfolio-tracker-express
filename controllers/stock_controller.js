@@ -84,4 +84,22 @@ module.exports = {
         .json({ error: `${err}. Failed to get stock data` });
     }
   },
+
+  getOneStockProfile: async (req, res) => {
+    try {
+      console.log("hitting api be api");
+
+      const profileResponse = await axios.get(
+        `https://finnhub.io/api/v1/stock/profile2?symbol=${req.params.symbol}&token=${process.env.FINNHUB_TOKEN}`
+      );
+
+      const profileResponseData = await profileResponse.data;
+
+      return res.json(profileResponseData);
+    } catch (err) {
+      return res
+        .status(500)
+        .json({ error: `${err}. Failed to get stock data` });
+    }
+  },
 };
